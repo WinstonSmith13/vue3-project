@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "weather-primary":"#00668A",
-        "weather-secondary":"#004E71",
+        "weather-primary":"#1a1a1a",
+        "weather-secondary":"#42b883",
       },
     },
     fontFamily: {

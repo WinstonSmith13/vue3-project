@@ -19,7 +19,7 @@
 import axios from "axios";
 import {useRoute} from 'vue-router';
 
-const apiOpenKey = '368b822416a6e5e5231d51ccde972e42';
+const apiOpenKey = '';
 
 
 const route = useRoute();

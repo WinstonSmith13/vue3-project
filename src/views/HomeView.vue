@@ -52,7 +52,7 @@ const previewCity = (searchResult) => {
 }
 
 
-const apiKey = "pk.eyJ1Ijoid2luc3RvbnNtaXRoMTMiLCJhIjoiY2w5eWc3aWp5MDR0YzNybHR0aHpwZXA0MSJ9.X7ftxw-Fo-r7l7MPDgSaww";
+const apiKey = "";
 const searchQuery = ref("");
 const queryTimeout = ref(null);
 let searchResults = ref(null);

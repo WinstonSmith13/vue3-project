@@ -16,7 +16,8 @@ top-[66px] ">
         <p v-if="searchResults.length === 0">Nothing to find...</p>
         <template v-else>
           <li v-for="searchResult in searchResults" :key="searchResult"
-              class="py-2 cursor-pointer">
+              class="py-2 cursor-pointer"
+              @click="previewCity(searchResult)">
             {{ searchResult.place_name }}
           </li>
         </template>
@@ -30,6 +31,25 @@ top-[66px] ">
 <script setup>
 import {ref} from "vue";
 import axios from "axios";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
+const previewCity = (searchResult) => {
+  console.log(searchResult);
+  const [city, state] = searchResult.place_name.split(",");
+  router.push(
+      {
+        name: 'cityView',
+        params: {state: state.replaceAll(" ", ""), city: city},
+        query: {
+          lat: searchResult.geometry.coordinates[1],
+          lng: searchResult.geometry.coordinates[0],
+          preview: true,
+        },
+        path: '/weather/:state/:city'
+      });
+
+}
 
 
 const apiKey = "pk.eyJ1Ijoid2luc3RvbnNtaXRoMTMiLCJhIjoiY2w5eWc3aWp5MDR0YzNybHR0aHpwZXA0MSJ9.X7ftxw-Fo-r7l7MPDgSaww";
@@ -37,6 +57,7 @@ const searchQuery = ref("");
 const queryTimeout = ref(null);
 let searchResults = ref(null);
 const searchError = ref(null);
+
 
 const getSearchResults = () => {
   clearTimeout(queryTimeout.value);
